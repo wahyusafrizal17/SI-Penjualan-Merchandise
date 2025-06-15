@@ -1,174 +1,337 @@
+<?php
+	$pengaturan = App\Models\Setting::find(1);
+	$categories = App\Models\Category::paginate(5);
+?>
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-    <!-- BEGIN: Head-->
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-        <meta name="description" content="TEDC ChatDoc AI">
-        <meta name="keywords" content="Tedc, Chat Document, AI">
-        <meta name="author" content="PIXINVENT">
-        <title>TEDC ChatDoc AI</title>
-        <link rel="apple-touch-icon" href="{{ asset('app-assets/images/tedc.png') }}">
-        <link rel="shortcut icon" type="image/png" href="{{ asset('app-assets/images/tedc.png') }}">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/forms/select/select2.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap-extended.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/colors.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/components.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/dark-layout.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/bordered-layout.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/semi-dark-layout.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
-    </head>
-    <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
-        <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
-            <div class="navbar-container d-flex content">
-                <ul class="nav navbar-nav align-items-center ms-auto">
-                    <li class="nav-item dropdown dropdown-user">
-                        <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="user-nav d-sm-flex d-none">
-                                <span class="user-name fw-bolder">{{ Auth::user()->name }}</span>
-                                <span class="user-status">Online</span>
-                            </div>
-                            <span class="avatar">
-                                <img class="round" src="{{ !empty(Auth::user()->foto) ? asset('foto/'.Auth::user()->foto) : asset('app-assets/images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40">
-                                <span class="avatar-status-online"></span>
-                            </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                            <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="me-50" data-feather='log-out'></i> Logout</a>
-                        </div>
-                    </li>
-                </ul>
+<html lang="zxx">
+<head>
+	<!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name='copyright' content=''>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Title Tag  -->
+    <title>{{ $pengaturan->name }}</title>
+	<link rel="icon" href="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" type="image/x-icon"/>
+
+	<!-- Favicon -->
+	<!-- Web Font -->
+	<script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/assets/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<link rel="stylesheet" href="{{ asset('css/swap.css') }}">
+    	
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/niceselect.css') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('css/animate.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/flex-slider.min.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+	
+</head>
+<body class="js">
+	
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	
+	<!-- Get Pro Button -->
+    <ul class="pro-features">
+		<a class="get-pro" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 11) }}&text=Saya%20ingin%20order." target="_blank">Chat</a>
+	  </ul>
+	  <!-- Header -->
+	  <header class="header shop">
+		<!-- Topbar -->
+		
+			<!-- End Topbar -->
+			<div class="middle-inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-12">
+							<!-- Logo -->
+							<div class="logo">
+								<a href="/"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" class="img-logo" alt="" style="width: 80px"></a>
+							</div>
+							<!--/ End Logo -->
+							<!-- Search Form -->
+							<div class="search-top">
+								<div class="top-search"><a href="#0"><i class="fa fa-search"></i></a></div>
+								<!-- Search Form -->
+								<div class="search-top">
+									<form class="search-form">
+										<input type="text" placeholder="Search here..." name="search">
+										<button value="search" type="submit"><i class="fa fa-search"></i></button>
+									</form>
+								</div>
+								<!--/ End Search Form -->
+							</div>
+							<!--/ End Search Form -->
+							<div class="mobile-nav"></div>
+						</div>
+						<div class="col-lg-8 col-md-7 col-12">
+							<div class="search-bar-top">
+								<div class="search-bar">
+									{{ Form::open(['url' => route('products.search'), 'method' => 'GET']) }}
+										<input name="search" placeholder="Search Products Here....." type="search">
+										<button class="btnn"><i class="fa fa-search"></i></button>
+									{{ Form::close() }}
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-3 col-12">
+							<div class="right-bar">
+								<!-- Search Form -->
+								{{-- <div class="sinlge-bar">
+								  <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+								</div>
+								<div class="sinlge-bar">
+								  <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+								</div> --}}
+								@if(Auth::check())
+								<div class="sinlge-bar shopping">
+								  <a href="/cart" class="single-icon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="cart-qty">{{ count(hitung_cart_qty()) }}</span>
+								</a>
+								</div>
+								@endif
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Header Inner -->
+			<div class="header-inner">
+				<div class="container">
+					<div class="cat-nav-head">
+						<div class="row">
+							<div class="col-12">
+								<div class="menu-area">
+									<!-- Main Menu -->
+									<nav class="navbar navbar-expand-lg">
+										<div class="navbar-collapse">	
+											<div class="nav-inner">	
+												<ul class="nav main-menu menu navbar-nav">
+													<li class="active"><a href="/">Home</a></li>
+													<li><a href="/products">Produk</a></li>
+													@if(Auth::check())
+													<li><a href="/lacak-order">Pesanan Saya</a></li>
+													<li><a href="/cart">Keranjang</a></li>
+													@endif
+													<li><a href="{{ route('cek-ongkir') }}">Cek Ongkir</a></li>
+													<li><a href="{{ route('syarat-dan-ketentuan') }}">Ketentuan</a></li>
+													<li><a href="{{ route('hubungi-kami') }}">Hubungi Kami</a></li>
+													@if(Auth::check())
+													<li><a href="{{ route('profile.index') }}">{{ Auth::user()->name }}</a></li>
+													<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+													<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+														@csrf
+													</form>
+													@else
+													<li><a href="/login">Login</a></li>
+													@endif
+												</ul>
+											</div>
+										</div>
+									</nav>
+									<!--/ End Main Menu -->	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Header Inner -->
+		</header>
+        <!--/ End Header -->
+        
+    @yield('content')
+    	    	<!-- Start Shop Services Area -->
+	<section class="shop-services section home">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="fa fa-plane"></i>
+						<h4>Pengiriman Cepat</h4>
+						<p>Pengiriman 100% Terjaga</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-4 col-md-4 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="fa fa-archive"></i>
+						<h4>Produk Original</h4>
+						<p>Barang 100% Original</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-4 col-md-4 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="fa fa-lock"></i>
+						<h4>Keamanan</h4>
+						<p>Keamanan 100%</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				{{-- <div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="fa fa-eye"></i>
+						<h4>Pengunjung</h4>
+						<p>100 Pengunjung</p>
+					</div>
+					<!-- End Single Service -->
+				</div> --}}
+			</div>
+		</div>
+	</section>
+	<!-- End Shop Services Area -->
+	
+	<!-- Start Shop Newsletter  -->
+	{{-- <section class="shop-newsletter section">
+		<div class="container">
+			<div class="inner-top">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2 col-12">
+						<!-- Start Newsletter Inner -->
+						<div class="inner">
+							<h4>Newsletter</h4>
+							<p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+								<input name="EMAIL" placeholder="Your email address" required="" type="email">
+								<button class="btn">Subscribe</button>
+							</form>
+						</div>
+						<!-- End Newsletter Inner -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> --}}
+	<!-- End Shop Newsletter -->
+	
+    <!-- Start Footer Area -->
+    <footer class="footer">
+      <!-- Footer Top -->
+      <div class="footer-top section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer about">
+                <div class="logo">
+					<a href="/" style="font-size: 25px; font-weight: bold"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" style="width: 50%" alt=""></a>
+                </div>
+                <p class="text">{{ $pengaturan->description }}</p>
+                <p class="call"><span><a href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order." target="_blank">{{ $pengaturan->phone }}</a></span></p>
+              </div>
+              <!-- End Single Widget -->
             </div>
-        </nav>
-        <!-- BEGIN: Main Menu-->
-        <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item me-auto">
-                        <a class="navbar-brand" href="/">
-                            <span class="brand-logo">
-                                <img src="{{ asset('website/images/logo.png') }}" alt=""></span>
-                                <h2 class="brand-text mb-0" style="color: hsl(240 5.9% 10%);font-size: 15px;margin-left: -8px;margin-top: 1px;">e-Learning</h2>
-                            </a>
-                    </li>
-                    <li class="nav-item nav-toggle">
-                        <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
-                            <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i>
-                            <i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i>
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer social">
+                <h4>Kategori</h4>
+                <!-- Single Widget -->
+                <div class="contact">
+					<ul>
+					  @foreach($categories as $category)
+					  	<li><a href="/kategori/{{ $category->slug }}">{{ $category->name_category }}</a></li>
+					  @endforeach
+					</ul>
+				  </div>
+				  <!-- End Single Widget -->
+                </div>
+              <!-- End Single Widget -->
             </div>
-            <div class="shadow-bottom"></div>
-            <div class="main-menu-content">
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class="nav-item {!!(Request::is('materi*')) ? ' active' : '' !!}">
-                        <a class="d-flex align-items-center" href="{{ route('materi.index') }}">
-                            <i data-feather="file"></i>
-                            <span class="menu-title text-truncate" data-i18n="Modal Examples">Materi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {!!(Request::is('users*')) ? ' active' : '' !!}">
-                        <a class="d-flex align-items-center" href="{{ route('users.index') }}">
-                            <i data-feather="users"></i>
-                            <span class="menu-title text-truncate" data-i18n="Modal Examples">User</span>
-                        </a>
-                    </li>
-                    {{-- <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
-                            <i data-feather="user"></i>
-                            <span class="menu-title text-truncate" data-i18n="User">Master Data</span>
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="d-flex align-items-center" href="app-user-list.html">
-                                    <i data-feather="circle"></i>
-                                    <span class="menu-item text-truncate" data-i18n="List">List</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        <a class="d-flex align-items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i data-feather="log-out"></i>
-                            <span class="menu-title text-truncate" data-i18n="Modal Examples">Logout</span>
-                        </a>
-                    </li> --}}
-                    {{-- <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
-                            <i data-feather="user"></i>
-                            <span class="menu-title text-truncate" data-i18n="User">Master Data</span>
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="d-flex align-items-center" href="app-user-list.html">
-                                    <i data-feather="circle"></i>
-                                    <span class="menu-item text-truncate" data-i18n="List">List</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> --}}
+      
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer social">
+                <h4>Informasi</h4>
+                <!-- Single Widget -->
+                <div class="contact">
+                  <ul>
+                    <li>{{ $pengaturan->address }}</li>
+                    <li>{{ $pengaturan->email }}</li>
+                    <li>{{ $pengaturan->phone }}</li>
+                  </ul>
+                </div>
+                <!-- End Single Widget -->
+                <ul>
+                  <li><a href="{{ $pengaturan->link_facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a target="_blank" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order."><i class="fab fa-whatsapp"></i></a></li>
+                  <li><a href="{{ $pengaturan->link_instagram }}"><i class="fab fa-instagram"></i></a></li>
                 </ul>
+              </div>
+              <!-- End Single Widget -->
             </div>
-        </div> @yield('content') <div class="sidenav-overlay"></div>
-        <div class="drag-target"></div>
-        <footer class="footer footer-static footer-light">
-            <p class="clearfix mb-0">
-                <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021 <a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a>
-                    <span class="d-none d-sm-inline-block">, All rights Reserved</span>
-                </span>
-                <span class="float-md-end d-none d-md-block">Hand-crafted & Made with <i data-feather="heart"></i>
-                </span>
-            </p>
-        </footer>
-        <button class="btn btn-primary btn-icon scroll-top" type="button">
-            <i data-feather="arrow-up"></i>
-        </button>
-        <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
-        <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
-        <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js') }}"></script>
-        <script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          </div>
+        </div>
+      </div>
+      <!-- End Footer Top -->
+      <div class="copyright">
+        <div class="container">
+          <div class="inner">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="left">
+                  <p>Copyright © {{ date('Y') }} {{ $pengaturan->name }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-migrate-3.0.0.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('js/popper.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/slicknav.min.js') }}"></script>
+	{{-- <script src="{{ asset('js/owl-carousel.js') }}"></script> --}}
+	<script src="{{ asset('js/magnific-popup.js') }}"></script>
+	{{-- <script src="{{ asset('js/facnybox.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/waypoints.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/finalcountdown.min.js') }}"></script> --}}
+	<script src="{{ asset('js/nicesellect.js') }}"></script>
+	{{-- <script src="{{ asset('js/ytplayer.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/flex-slider.js') }}"></script> --}}
+	<script src="{{ asset('js/scrollup.js') }}"></script>
+	{{-- <script src="{{ asset('js/onepage-nav.min.js') }}"></script> --}}
+	<script src="{{ asset('js/easing.js') }}"></script>
+	<script src="{{ asset('js/active.js') }}"></script>
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         @include('sweetalert::alert')
-        @stack('scripts')
-
-        <script>
-            $('.select2').select2({
-                // theme: "bootstrap"
-            });
-
-            $(document).ready(function () {
-                $('#basic-datatables').DataTable();
-            });
-        </script>
-        <script>
-            $(window).on('load', function() {
-                if (feather) {
-                    feather.replace({
-                        width: 14,
-                        height: 14
-                    });
-                }
-            })
-        </script>
-    </body>
-    <!-- END: Body-->
+	@stack('scripts')
+  </body>
 </html>

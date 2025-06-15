@@ -1,0 +1,183 @@
+@media(min-width:320px) {
+
+.img-logo {
+    width: 50%
+}
+.header.shop .search-top{
+    right: 75px;
+    top: 20px;
+    color: #2979ff;
+}
+.slicknav_menu .slicknav_no-text{
+    margin-top: 18px;
+    margin-right: 8px;
+}
+.images-slider{
+    height: 160px;
+    object-fit: cover;
+}
+.padding-product{
+    margin-top: -185px;
+}
+.single-product .product-content h3 a{
+    font-size: 9px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 0px;
+}
+.single-product .product-content{
+    padding: 10px;
+    background-color: #2979ff;
+    margin-top: -1px;
+    color: white !important;
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 0px;
+}
+.padding-contact-us{
+    padding: 0px 15px;
+}
+.text-judul{
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #69727b; 
+}
+.header-box{
+    background: #2979ff;
+    padding: 10px 26px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+.content-box{
+    background: white;
+    padding: 26px 26px;
+    color: black;
+    font-size: 12px;
+    border-bottom: 1px solid gray;
+}
+.myBox {
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.list-order{
+    width: 980px;
+}
+.list-ongkir{
+    width:700px;
+    max-width: none;
+}
+.text-harga{
+    float: right;
+    padding-right: 15px;
+    font-size: 10px;
+}
+.quickview-content .quantity .input-group{
+    width: 100%;
+}
+.quickview-content .add-to-cart{
+    width: 100%;
+}
+.quickview-content .add-to-cart .btn{
+    width: 96%;
+}
+.shop.checkout .single-widget.get-button .btn{
+    margin-top: 10px;
+}
+.padding-shop{
+    margin-top: 0;
+}
+}
+
+@media(min-width:424px) {
+    .header.shop .search-top {
+        right: 75px;
+        top: 38px;
+        color: #2979ff;
+    }
+    .quickview-content .add-to-cart .btn {
+        width: 97.2%;
+    }
+}
+
+@media(min-width:768px) {
+
+.img-logo {
+    width: 100%;
+    margin-top: -17px;
+}
+.images-slider{
+    height: auto;
+    background-size: cover;
+}
+.padding-product{
+    margin-top: 0px;
+}
+.padding-contact-us{
+    padding: 0px 50px;
+}
+.single-product .product-content h3 a{
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 0px;
+}
+.single-product .product-content{
+    padding: 10px;
+    background-color: #2979ff;
+    margin-top: -1px;
+    color: white !important;
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 0px;
+}
+.text-judul{
+    font-size: 2.25em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #69727b; 
+}
+.header-box{
+    background: #2979ff;
+    padding: 10px 26px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+.content-box{
+    background: white;
+    padding: 35px 26px;
+    color: black;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+}
+.list-order{
+    width: 100%;
+}
+.list-ongkir{
+    width:100%;
+    max-width: none;
+}
+.text-harga{
+    float: right;
+    padding-right: 15px;
+    font-size: 12px;
+}
+.quickview-content .quantity .input-group{
+    width: 151px
+}
+.quickview-content .add-to-cart{
+    width: 60%;
+}
+.quickview-content .add-to-cart .btn{
+    width: 100%;
+}
+.shop.checkout .single-widget.get-button .btn{
+    margin-top: 0;
+}
+.padding-shop{
+    margin-top: -75px;
+}
+}

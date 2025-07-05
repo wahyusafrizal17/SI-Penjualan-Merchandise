@@ -24,7 +24,9 @@ class WelcomeController extends Controller
         $data['product']        = Product::orderBy('id', 'asc')->paginate(8);
         $data['sliders']        = Slider::where('status', 0)->get();
         $data['utama']          = Slider::where('status', 1)->first();
-
+        if(Auth::check() && Auth::user()->level == 'admin'){
+            return redirect()->route('admin.dashboard');
+        }
         return view('welcome',$data);
     }
 

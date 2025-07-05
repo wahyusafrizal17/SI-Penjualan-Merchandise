@@ -16,7 +16,7 @@ class Product extends Model
 
     private function uniqueSlug($value)
     {
-        $slug = str_slug($value);
+        $slug = \Illuminate\Support\Str::slug($value);
         $count = Product::where('slug', $slug)->count();
         $newCount = $count > 0 ? ++$count : '';
         return $newCount > 0 ? "$slug-$newCount" : $slug;

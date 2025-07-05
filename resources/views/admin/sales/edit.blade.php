@@ -3,7 +3,7 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
-        {{ Form::model($transaction,['url'=>route('sales.update',['id'=>$transaction->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
+        {{ Form::model($transaction,['url'=>route('sales.update',[$transaction->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
             @include('validation')
         <div class="row">
             <div class="col-md-5">

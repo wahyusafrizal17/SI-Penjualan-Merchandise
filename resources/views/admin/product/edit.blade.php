@@ -12,7 +12,7 @@
              <div class="col-md-8">
                 <div class="card">
                    <div class="card-body">
-                    {{ Form::model($product,['url'=>route('product.update',['id'=>$product->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
+                    {{ Form::model($product,['url'=>route('product.update',[$product->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
                     
                     @include('admin.product.form')  
            

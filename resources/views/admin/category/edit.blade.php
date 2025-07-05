@@ -11,7 +11,7 @@
              <div class="col-md-8">
                 <div class="card">
                    <div class="card-body">
-                    {{ Form::model($category,['url'=>route('category.update',['id'=>$category->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
+                    {{ Form::model($category,['url'=>route('category.update',[$category->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
                     
                     @include('admin.category.form')  
            
